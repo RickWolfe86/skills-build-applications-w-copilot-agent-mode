@@ -1,5 +1,6 @@
 import cors from 'cors';
 import express from 'express';
+import { connectDatabase } from './config/database.js';
 import { createApiRouter } from './routes.js';
 
 const app = express();
@@ -21,6 +22,13 @@ app.get('/api/config', (_request, response) => {
   response.json({ baseUrl });
 });
 
-app.listen(port, () => {
-  console.log(`OctoFit Tracker API listening at ${baseUrl}`);
-});
+connectDatabase()
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`OctoFit Tracker API listening at ${baseUrl}`);
+    });
+  })
+  .catch((error) => {
+    console.error('Unable to start API:', error);
+    process.exit(1);
+  });
