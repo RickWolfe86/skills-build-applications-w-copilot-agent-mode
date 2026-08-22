@@ -1,3 +1,9 @@
+# OctoFit Tracker frontend
+
+In GitHub Codespaces, define `VITE_CODESPACE_NAME` in `.env.local` with the
+Codespace name so API requests use the port 8000 forwarded URL. When the
+variable is not set, the app safely uses `http://localhost:8000/api`.
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
