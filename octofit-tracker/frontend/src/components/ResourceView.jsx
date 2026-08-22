@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { fetchResource } from '../api.js';
 
-export default function ResourceView({ resource, title, description, renderItem }) {
+export default function ResourceView({ resource, endpoint, title, description, renderItem }) {
   const [items, setItems] = useState([]);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetchResource(resource).then(setItems).catch((loadError) => setError(loadError.message));
-  }, [resource]);
+    fetchResource(resource, endpoint).then(setItems).catch((loadError) => setError(loadError.message));
+  }, [endpoint, resource]);
 
   return (
     <section className="resource-page">
